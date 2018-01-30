@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B388FF"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:screenOrientation="locked">
+
+    <ImageView
+        android:id="@+id/hint_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/capital" />
+
+    <TextView
+        android:id="@+id/question_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Please choose your preferences :"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/xtraQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="add extra 5 points question"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/send_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="send e-mail with final score"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/first_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <RadioButton
+            android:id="@+id/second_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <RadioButton
+            android:id="@+id/third_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:textAppearanceMedium" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/xtra_question_answer_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="textCapWords"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:onClick="firstTime"
+            android:text="START" />
+
+        <Button
+            android:id="@+id/submit_answer_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:onClick="submitAnswer"
+            android:text="Submit Answer"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/final_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:onClick="finalAction"
+            android:text="Submit Answer"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>
