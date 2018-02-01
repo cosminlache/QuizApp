@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     radioGroup.setVisibility(android.view.View.GONE);
                     buttonSubmitAnswer.setVisibility(View.GONE);
-                    questionText = ("Your total score is " + totalPoints + " !");
+                    questionText = ("Your total score is\n" + totalPoints + " points !");
                     changeText.setTextSize(30);
                     changeText.setText(questionText);
 
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
 //            Toast Message to allert that no answer is selected
-            scoreText = "Please choose an answer ! i=" + i + "puncte=" + totalPoints;
+            scoreText = "Please choose an answer !" ;
             Context context = getApplicationContext();
             CharSequence text = scoreText;
             int duration = Toast.LENGTH_SHORT;
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         if (answerTypped.equals(rightAnswer[i])) {
             totalPoints += 5;
         }
-        questionText = ("Your total score is " + totalPoints);
+        questionText = ("Your total score is\n" + totalPoints + " points !");
         changeText.setTextSize(30);
         changeText.setText(questionText);
 
