@@ -13,14 +13,15 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        android:src="@drawable/capital" />
+        android:src="@drawable/capital"
+        android:contentDescription="@null"/>
 
     <TextView
         android:id="@+id/question_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Please choose your preferences :"
+        android:text="@string/question_text_view"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20sp" />
@@ -30,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="add extra 5 points question"
+        android:layout_marginStart="10dp"
+        android:text="@string/xtraQuestion"
         android:textSize="20sp" />
 
     <CheckBox
@@ -38,7 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="send e-mail with final score"
+        android:layout_marginStart="10dp"
+        android:text="@string/send_email"
         android:textSize="20sp" />
 
     <RadioGroup
@@ -46,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginStart="10dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -75,7 +79,7 @@
         android:id="@+id/xtra_question_answer_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="City"
+        android:hint="@string/xtra_question_answer_textview"
         android:inputType="textCapWords"
         android:textSize="20sp"
         android:visibility="gone" />
@@ -92,7 +96,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:onClick="firstTime"
-            android:text="START" />
+            android:text="@string/start_button" />
 
         <Button
             android:id="@+id/submit_answer_button"
@@ -102,7 +106,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:onClick="submitAnswer"
-            android:text="Submit Answer"
+            android:text="@string/submit_answer_button"
             android:visibility="gone"/>
 
         <Button
@@ -113,7 +117,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:onClick="finalAction"
-            android:text="Submit Answer"
+            android:text="@string/submit_answer_button"
             android:visibility="gone"/>
     </RelativeLayout>
 
