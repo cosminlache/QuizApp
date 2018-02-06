@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quiz App</string>
+    <string name="question_text_view">Care sunt preferintele tale ?</string>
+    <string name="xtraQuestion">adauga intrebarea de 5 puncte</string>
+    <string name="send_email">trimite e-mail cu scorul final</string>
+    <string name="xtra_question_answer_textview">Orasul</string>
+    <string name="start_button">START</string>
+    <string name="submit_answer_button">Trimite Raspuns</string>
+    <string name="newQuestion">Care este capitala %1$s ?</string>
+    <string name="xtraQuestionText">Trebuie sa tastezi capitala %1$s :</string>
+    <string name="noAnswer">Alege un raspuns !</string>
+    <string name="finalScore">Ai acumulat \n%1$d puncte !</string>
+
+</resources>

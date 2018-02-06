@@ -1,3 +1,18 @@
+
 <resources>
+
     <string name="app_name">Quiz App</string>
+    <string name="question_text_view">Please choose your preferences :</string>
+    <string name="xtraQuestion">add extra 5 points question</string>
+    <string name="send_email">send e-mail with final score</string>
+    <string name="xtra_question_answer_textview">City</string>
+    <string name="start_button">START</string>
+    <string name="submit_answer_button">Submit Answer</string>
+    <string name="newQuestion">Which is the capital of %1$s ?</string>
+    <string name="xtraQuestionText">You have to write the capital of %1$s :</string>
+    <string name="finalScore">Your total score is \n%1$d points !</string>
+    <string name="noAnswer">Please choose an answer !</string>
 </resources>
+
+
+    <!--Your total score is \n" + totalPoints + " points !-->
