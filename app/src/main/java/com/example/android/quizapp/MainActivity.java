@@ -2,6 +2,7 @@ package com.example.android.quizapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.argentina,
             R.drawable.netherlands,
             R.drawable.maroc};
-    String[] nameOfTheCountry = new String[]{"Italy", "France", "Germany", "Romania", "Portugal", "the UK", "Spain", "Argentina", "Netherlands", "Morocco"};
-    String[] rightAnswer = new String[]{"Rome", "Paris", "Berlin", "Bucharest", "Lisbon", "London", "Madrid", "Buenos Aires", "Amsterdam", "Rabat"};
-    String[] randomName = new String[]{"Ankara", "Atena", "Bratislava", "Sofia", "Bruxelles", "Cairo", "Haga", "Monaco", "Moscova", "Oslo", "Nicosia", "Seul"};
+
+
+
+
+ //   String[] nameOfTheCountry = new String[]{"Italy", "France", "Germany", "Romania", "Portugal", "the UK", "Spain", "Argentina", "Netherlands", "Morocco"};
+ //   String[] rightAnswer = new String[]{"Rome", "Paris", "Berlin", "Bucharest", "Lisbon", "London", "Madrid", "Buenos Aires", "Amsterdam", "Rabat"};
+ //   String[] randomName = new String[]{"Ankara", "Atena", "Bratislava", "Sofia", "Bruxelles", "Cairo", "Haga", "Monaco", "Moscova", "Oslo", "Nicosia", "Seul"};
     int[] rightAnswerIndex = new int[]{1, 2, 0, 0, 2, 1, 2, 0, 2, 1};
     boolean xtraQuestion = false;
     boolean sendEmail = false;
@@ -49,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     public void firstTime(View View) {
 
         // Verify if the checkBoxes are checked and store the answers in the boolean variables
-        CheckBox xtraQuestionCheckBox = (CheckBox) findViewById(R.id.xtraQuestion);
+        CheckBox xtraQuestionCheckBox = findViewById(R.id.xtraQuestion);
         xtraQuestion = xtraQuestionCheckBox.isChecked();
-        CheckBox sendEmailCheckBox = (CheckBox) findViewById(R.id.send_email);
+        CheckBox sendEmailCheckBox = findViewById(R.id.send_email);
         sendEmail = sendEmailCheckBox.isChecked();
 
         // Hide the checkBox views
@@ -65,20 +70,24 @@ public class MainActivity extends AppCompatActivity {
         Button buttonSubmitAnswer = findViewById(R.id.submit_answer_button);
         buttonSubmitAnswer.setVisibility(android.view.View.VISIBLE);
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-        radioGroup.setVisibility(View.VISIBLE);
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        radioGroup.setVisibility(android.view.View.VISIBLE);
 
         nextQuestion(View);
     }
 
     public void nextQuestion(View view) {
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
         Button buttonSubmitAnswer = findViewById(R.id.submit_answer_button);
         TextView changeText = findViewById(R.id.question_text_view);
         ImageView hintImage = findViewById(R.id.hint_image_view);
         String questionText, firstButtonNameText, secondButtonNameText;
         Random r = new Random();
         int randomIndex;
+        Resources res = getResources();
+        String[] nameOfTheCountry = res.getStringArray(R.array.country);
+        String[] randomName = res.getStringArray(R.array.randomAnswer);
+        String[] rightAnswer = res.getStringArray(R.array.answer);
 
         if (i <= 8) {
 
@@ -86,12 +95,14 @@ public class MainActivity extends AppCompatActivity {
             hintImage.setImageResource(myImageList[i]);
 
 //        Change the text of the question according to the list and image hint
-            questionText = ("Which is the capital of " + nameOfTheCountry[i] + "?");
+//            Resources res = getResources();
+
+            questionText = res.getString(R.string.newQuestion,nameOfTheCountry[i] );
             changeText.setText(questionText);
 
 //        Change the radioButtons text for other random answers from the list
 
-            firstButtonNameText = "";
+//            firstButtonNameText = "";
             secondButtonNameText = "";
             for (int j = 0; j <= 2; j++) {
                 if (j == (rightAnswerIndex[i])) {
@@ -122,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 if (xtraQuestion) {
                     radioGroup.setVisibility(android.view.View.GONE);
                     hintImage.setImageResource(myImageList[i]);
-                    EditText xtraAnswerText = (EditText) findViewById(R.id.xtra_question_answer_textview);
+                    EditText xtraAnswerText = findViewById(R.id.xtra_question_answer_textview);
                     xtraAnswerText.setVisibility(android.view.View.VISIBLE);
-                    questionText = ("You have to write the capital of " + nameOfTheCountry[i] + ":");
+                    questionText = res.getString(R.string.xtraQuestionText,nameOfTheCountry[i] );
                     changeText.setText(questionText);
                     buttonSubmitAnswer.setVisibility(View.GONE);
                     Button buttonFinalAction = findViewById(R.id.final_action_button);
@@ -133,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     radioGroup.setVisibility(android.view.View.GONE);
                     buttonSubmitAnswer.setVisibility(View.GONE);
-                    questionText = ("Your total score is\n" + totalPoints + " points !");
+                    questionText = res.getString(R.string.finalScore, totalPoints );
                     changeText.setTextSize(30);
                     changeText.setText(questionText);
 
@@ -157,13 +168,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void submitAnswer(View View) {
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
         int selectedRadioButtonID = radioGroup.getCheckedRadioButtonId();
         String scoreText;
+        Resources res = getResources();
+        String[] rightAnswer = res.getStringArray(R.array.answer);
 
 //     If any radio Button is checked
         if (selectedRadioButtonID != -1) {
-            RadioButton selectedRadioButton = (RadioButton) findViewById(selectedRadioButtonID);
+            RadioButton selectedRadioButton = findViewById(selectedRadioButtonID);
             String selectedRadioButtonText = selectedRadioButton.getText().toString();
 
 //        If the right answer is checked
@@ -178,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
 //            Toast Message to allert that no answer is selected
-            scoreText = "Please choose an answer !" ;
+            scoreText = res.getString(R.string.noAnswer);
             Context context = getApplicationContext();
             CharSequence text = scoreText;
             int duration = Toast.LENGTH_SHORT;
@@ -190,9 +203,12 @@ public class MainActivity extends AppCompatActivity {
     public void finalAction(View View) {
         Button buttonFinalAction = findViewById(R.id.final_action_button);
         TextView changeText = findViewById(R.id.question_text_view);
-        EditText xtraAnswerText = (EditText) findViewById(R.id.xtra_question_answer_textview);
+        EditText xtraAnswerText = findViewById(R.id.xtra_question_answer_textview);
         String answerTypped = xtraAnswerText.getText().toString();
         String questionText;
+        Resources res = getResources();
+        String[] rightAnswer = res.getStringArray(R.array.answer);
+
 
         xtraAnswerText.setVisibility(android.view.View.GONE);
         buttonFinalAction.setVisibility(android.view.View.GONE);
@@ -201,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         if (answerTypped.equals(rightAnswer[i])) {
             totalPoints += 5;
         }
-        questionText = ("Your total score is\n" + totalPoints + " points !");
+        questionText = res.getString(R.string.finalScore, totalPoints );
         changeText.setTextSize(30);
         changeText.setText(questionText);
 
