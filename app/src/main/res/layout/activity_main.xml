@@ -4,17 +4,16 @@
     android:layout_height="match_parent"
     android:background="#B388FF"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:screenOrientation="locked">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/hint_image_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@drawable/capital"
-        android:contentDescription="@null"/>
+        android:src="@drawable/capital" />
 
     <TextView
         android:id="@+id/question_text_view"
@@ -28,21 +27,17 @@
 
     <CheckBox
         android:id="@+id/xtraQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/checkBox_style"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:text="@string/xtraQuestion"
-        android:textSize="20sp" />
+        android:text="@string/xtraQuestion" />
 
     <CheckBox
         android:id="@+id/send_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/checkBox_style"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:text="@string/send_email"
-        android:textSize="20sp" />
+        android:text="@string/send_email" />
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -55,24 +50,15 @@
 
         <RadioButton
             android:id="@+id/first_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:textAppearanceMedium" />
+            style="@style/radio_button_style" />
 
         <RadioButton
             android:id="@+id/second_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:textAppearanceMedium" />
+            style="@style/radio_button_style" />
 
         <RadioButton
             android:id="@+id/third_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:textAppearanceMedium" />
+            style="@style/radio_button_style" />
     </RadioGroup>
 
     <EditText
@@ -90,35 +76,29 @@
 
         <Button
             android:id="@+id/start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/button_style"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
             android:onClick="firstTime"
             android:text="@string/start_button" />
 
         <Button
             android:id="@+id/submit_answer_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/button_style"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
             android:onClick="submitAnswer"
             android:text="@string/submit_answer_button"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/final_action_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/button_style"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
             android:onClick="finalAction"
             android:text="@string/submit_answer_button"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>

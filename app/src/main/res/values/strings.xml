@@ -12,7 +12,10 @@
     <string name="xtraQuestionText">You have to write the capital of %1$s :</string>
     <string name="finalScore">Your total score is \n%1$d points !</string>
     <string name="noAnswer">Please choose an answer !</string>
+    <string name="emailExtraSubject">Total score for QuizzAPP</string>
+    <string name="emailExtraText">Your total score for QuizzApp is %1$d points !</string>
+    <string name="blankText">&#x200B;</string>
+
 </resources>
 
 
-    <!--Your total score is \n" + totalPoints + " points !-->

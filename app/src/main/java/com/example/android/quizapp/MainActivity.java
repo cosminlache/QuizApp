@@ -33,17 +33,11 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.netherlands,
             R.drawable.maroc};
 
-
-
-
- //   String[] nameOfTheCountry = new String[]{"Italy", "France", "Germany", "Romania", "Portugal", "the UK", "Spain", "Argentina", "Netherlands", "Morocco"};
- //   String[] rightAnswer = new String[]{"Rome", "Paris", "Berlin", "Bucharest", "Lisbon", "London", "Madrid", "Buenos Aires", "Amsterdam", "Rabat"};
- //   String[] randomName = new String[]{"Ankara", "Atena", "Bratislava", "Sofia", "Bruxelles", "Cairo", "Haga", "Monaco", "Moscova", "Oslo", "Nicosia", "Seul"};
     int[] rightAnswerIndex = new int[]{1, 2, 0, 0, 2, 1, 2, 0, 2, 1};
     boolean xtraQuestion = false;
     boolean sendEmail = false;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -95,14 +89,12 @@ public class MainActivity extends AppCompatActivity {
             hintImage.setImageResource(myImageList[i]);
 
 //        Change the text of the question according to the list and image hint
-//            Resources res = getResources();
 
             questionText = res.getString(R.string.newQuestion,nameOfTheCountry[i] );
             changeText.setText(questionText);
 
-//        Change the radioButtons text for other random answers from the list
+//        Change the radioButtons text for the right answer and other random answers from the list
 
-//            firstButtonNameText = "";
             secondButtonNameText = "";
             for (int j = 0; j <= 2; j++) {
                 if (j == (rightAnswerIndex[i])) {
@@ -148,13 +140,13 @@ public class MainActivity extends AppCompatActivity {
                     changeText.setTextSize(30);
                     changeText.setText(questionText);
 
-//        If send e-mail was checked
+//        If send e-mail checkBox was checked
                     if (sendEmail) {
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
                         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
                         intent.putExtra(Intent.EXTRA_EMAIL, "");
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "Total score for QuizzAPP ");
-                        intent.putExtra(Intent.EXTRA_TEXT, "Your total score for QuizzApp is " + totalPoints + " points !");
+                        intent.putExtra(Intent.EXTRA_SUBJECT,res.getString(R.string.emailExtraSubject));
+                        intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText,totalPoints));
                         if (intent.resolveActivity(getPackageManager()) != null) {
                             startActivity(intent);
                         }
@@ -221,13 +213,13 @@ public class MainActivity extends AppCompatActivity {
         changeText.setTextSize(30);
         changeText.setText(questionText);
 
-//            If send e-mail was checked
+//            If send e-mail checkBox was checked
         if (sendEmail) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:")); // only email apps should handle this
             intent.putExtra(Intent.EXTRA_EMAIL, "");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Total score for QuizzAPP ");
-            intent.putExtra(Intent.EXTRA_TEXT, "Your total score for QuizzApp is " + totalPoints + " points !");
+            intent.putExtra(Intent.EXTRA_SUBJECT, res.getString(R.string.emailExtraSubject));
+            intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText,totalPoints));
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             }

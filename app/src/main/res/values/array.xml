@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country">
+        <item>Italy</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Romania</item>
+        <item>Portugal</item>
+        <item>the UK</item>
+        <item>Spain</item>
+        <item>Argentina</item>
+        <item>Netherlands</item>
+        <item>Morocco</item>
+    </string-array>
+
+    <string-array name="answer">
+        <item>Rome</item>
+        <item>Paris</item>
+        <item>Berlin</item>
+        <item>Bucharest</item>
+        <item>Lisbon</item>
+        <item>London</item>
+        <item>Madrid</item>
+        <item>Buenos Aires</item>
+        <item>Amsterdam</item>
+        <item>Rabat</item>
+    </string-array>
+
+    <string-array name="randomAnswer">
+        <item>Ankara</item>
+        <item>Atena</item>
+        <item>Bratislava</item>
+        <item>Sofia</item>
+        <item>Bruxelles</item>
+        <item>Cairo</item>
+        <item>Haga</item>
+        <item>Monaco</item>
+        <item>Moscova</item>
+        <item>Oslo</item>
+        <item>Nicosia</item>
+        <item>Seul</item>
+    </string-array>
+
+</resources>
+

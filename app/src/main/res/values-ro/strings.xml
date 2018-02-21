@@ -11,5 +11,8 @@
     <string name="xtraQuestionText">Trebuie sa tastezi capitala %1$s :</string>
     <string name="noAnswer">Alege un raspuns !</string>
     <string name="finalScore">Ai acumulat \n%1$d puncte !</string>
+    <string name="emailExtraSubject">Scorul total  pentru QuizzAPP</string>
+    <string name="emailExtraText">Ai realizat un total de %1$d puncte la QuizzAPP !</string>
+
 
 </resources>
