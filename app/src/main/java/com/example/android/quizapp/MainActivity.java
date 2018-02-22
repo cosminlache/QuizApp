@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,24 +33,31 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.maroc};
 
     int[] rightAnswerIndex = new int[]{1, 2, 0, 0, 2, 1, 2, 0, 2, 1};
-    boolean xtraQuestion = false;
-    boolean sendEmail = false;
+    boolean xtraQuestionIsChecked = false;
+    boolean sendEmailIsChecked = false;
+    private RadioGroup radioGroup;
+    private Button buttonSubmitAnswer;
+    private TextView questionTextView;
+    private Resources res;
 
-     @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        radioGroup = findViewById(R.id.radio_group);
+        buttonSubmitAnswer = findViewById(R.id.submit_answer_button);
+        questionTextView = findViewById(R.id.question_text_view);
+        res = getResources();
     }
 
 //  When the start button is pressed
-
     public void firstTime(View View) {
 
         // Verify if the checkBoxes are checked and store the answers in the boolean variables
         CheckBox xtraQuestionCheckBox = findViewById(R.id.xtraQuestion);
-        xtraQuestion = xtraQuestionCheckBox.isChecked();
+        xtraQuestionIsChecked = xtraQuestionCheckBox.isChecked();
         CheckBox sendEmailCheckBox = findViewById(R.id.send_email);
-        sendEmail = sendEmailCheckBox.isChecked();
+        sendEmailIsChecked = sendEmailCheckBox.isChecked();
 
         // Hide the checkBox views
         xtraQuestionCheckBox.setVisibility(android.view.View.GONE);
@@ -60,25 +66,17 @@ public class MainActivity extends AppCompatActivity {
         // Hide the start_button and activate the submit_answer button and radioGroup
         Button buttonStart = findViewById(R.id.start_button);
         buttonStart.setVisibility(android.view.View.GONE);
-
-        Button buttonSubmitAnswer = findViewById(R.id.submit_answer_button);
         buttonSubmitAnswer.setVisibility(android.view.View.VISIBLE);
-
-        RadioGroup radioGroup = findViewById(R.id.radio_group);
         radioGroup.setVisibility(android.view.View.VISIBLE);
 
         nextQuestion(View);
     }
 
     public void nextQuestion(View view) {
-        RadioGroup radioGroup = findViewById(R.id.radio_group);
-        Button buttonSubmitAnswer = findViewById(R.id.submit_answer_button);
-        TextView changeText = findViewById(R.id.question_text_view);
         ImageView hintImage = findViewById(R.id.hint_image_view);
         String questionText, firstButtonNameText, secondButtonNameText;
         Random r = new Random();
         int randomIndex;
-        Resources res = getResources();
         String[] nameOfTheCountry = res.getStringArray(R.array.country);
         String[] randomName = res.getStringArray(R.array.randomAnswer);
         String[] rightAnswer = res.getStringArray(R.array.answer);
@@ -89,12 +87,10 @@ public class MainActivity extends AppCompatActivity {
             hintImage.setImageResource(myImageList[i]);
 
 //        Change the text of the question according to the list and image hint
-
-            questionText = res.getString(R.string.newQuestion,nameOfTheCountry[i] );
-            changeText.setText(questionText);
+            questionText = res.getString(R.string.newQuestion, nameOfTheCountry[i]);
+            questionTextView.setText(questionText);
 
 //        Change the radioButtons text for the right answer and other random answers from the list
-
             secondButtonNameText = "";
             for (int j = 0; j <= 2; j++) {
                 if (j == (rightAnswerIndex[i])) {
@@ -114,21 +110,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                     secondButtonNameText = firstButtonNameText;
                 }
-
             }
 
         } else {
 
-
             if (i == 9) {
 //        If extra 5 points question checkBox was checked
-                if (xtraQuestion) {
+                if (xtraQuestionIsChecked) {
                     radioGroup.setVisibility(android.view.View.GONE);
                     hintImage.setImageResource(myImageList[i]);
                     EditText xtraAnswerText = findViewById(R.id.xtra_question_answer_textview);
                     xtraAnswerText.setVisibility(android.view.View.VISIBLE);
-                    questionText = res.getString(R.string.xtraQuestionText,nameOfTheCountry[i] );
-                    changeText.setText(questionText);
+                    questionText = res.getString(R.string.xtraQuestionText, nameOfTheCountry[i]);
+                    questionTextView.setText(questionText);
                     buttonSubmitAnswer.setVisibility(View.GONE);
                     Button buttonFinalAction = findViewById(R.id.final_action_button);
                     buttonFinalAction.setVisibility(android.view.View.VISIBLE);
@@ -136,34 +130,29 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     radioGroup.setVisibility(android.view.View.GONE);
                     buttonSubmitAnswer.setVisibility(View.GONE);
-                    questionText = res.getString(R.string.finalScore, totalPoints );
-                    changeText.setTextSize(30);
-                    changeText.setText(questionText);
+                    questionText = res.getString(R.string.finalScore, totalPoints);
+                    questionTextView.setTextSize(30);
+                    questionTextView.setText(questionText);
 
 //        If send e-mail checkBox was checked
-                    if (sendEmail) {
+                    if (sendEmailIsChecked) {
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
                         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
                         intent.putExtra(Intent.EXTRA_EMAIL, "");
-                        intent.putExtra(Intent.EXTRA_SUBJECT,res.getString(R.string.emailExtraSubject));
-                        intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText,totalPoints));
+                        intent.putExtra(Intent.EXTRA_SUBJECT, res.getString(R.string.emailExtraSubject));
+                        intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText, totalPoints));
                         if (intent.resolveActivity(getPackageManager()) != null) {
                             startActivity(intent);
                         }
                     }
-
                 }
             }
-
         }
     }
 
-
     public void submitAnswer(View View) {
-        RadioGroup radioGroup = findViewById(R.id.radio_group);
         int selectedRadioButtonID = radioGroup.getCheckedRadioButtonId();
         String scoreText;
-        Resources res = getResources();
         String[] rightAnswer = res.getStringArray(R.array.answer);
 
 //     If any radio Button is checked
@@ -194,14 +183,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void finalAction(View View) {
         Button buttonFinalAction = findViewById(R.id.final_action_button);
-        TextView changeText = findViewById(R.id.question_text_view);
         EditText xtraAnswerText = findViewById(R.id.xtra_question_answer_textview);
         String answerTypped = xtraAnswerText.getText().toString();
-        String questionText;
-        Resources res = getResources();
+        String finalText;
         String[] rightAnswer = res.getStringArray(R.array.answer);
-
-
         xtraAnswerText.setVisibility(android.view.View.GONE);
         buttonFinalAction.setVisibility(android.view.View.GONE);
 
@@ -209,17 +194,17 @@ public class MainActivity extends AppCompatActivity {
         if (answerTypped.equals(rightAnswer[i])) {
             totalPoints += 5;
         }
-        questionText = res.getString(R.string.finalScore, totalPoints );
-        changeText.setTextSize(30);
-        changeText.setText(questionText);
+        finalText = res.getString(R.string.finalScore, totalPoints);
+        questionTextView.setTextSize(30);
+        questionTextView.setText(finalText);
 
 //            If send e-mail checkBox was checked
-        if (sendEmail) {
+        if (sendEmailIsChecked) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:")); // only email apps should handle this
             intent.putExtra(Intent.EXTRA_EMAIL, "");
             intent.putExtra(Intent.EXTRA_SUBJECT, res.getString(R.string.emailExtraSubject));
-            intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText,totalPoints));
+            intent.putExtra(Intent.EXTRA_TEXT, res.getString(R.string.emailExtraText, totalPoints));
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             }
